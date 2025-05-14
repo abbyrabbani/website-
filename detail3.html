@@ -1,0 +1,122 @@
+ lukisan cat air bertema feminisme modern. Dengan palet warna lembut dan teknik realistis, ia menghadirkan gambaran wanita masa kini yang kuat dan berdaya
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Detail Seniman 1 - Galeri Seni</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #74ebd5, #ACB6E5);
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      overflow: hidden;
+      padding: 20px;
+    }
+    .artist-info {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 20px;
+    }
+    .artist-info img {
+      width: 300px;
+      border-radius: 12px;
+    }
+    .artist-info div {
+      flex: 1;
+    }
+    h2 {
+      margin-top: 0;
+      color: #333;
+    }
+    p {
+      line-height: 1.6;
+      color: #555;
+    }
+    .btn-beli {
+      margin-top: 20px;
+      display: inline-block;
+      background-color: #4A90E2;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .btn-beli:hover {
+      background-color: #357ABD;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="artist-info">
+    <img src="download.jpeg2.jpeg" alt="Eddi Hara">
+    <div>
+      <h2>Eddi Hara</h2>
+      <p><strong>Deskripsi:</strong>Eddie Hara adalah salah satu pelukis kontemporer Indonesia yang sangat unik dengan gaya pop-surrealismenya. Ia lahir di Salatiga, Jawa Tengah, dan menempuh pendidikan di Akademi Seni Rupa Indonesia (ASRI) Yogyakarta sebelum melanjutkan ke Basel, Swiss. Gaya lukisannya dikenal penuh warna cerah, karakter-karakter imajinatif, seperti monster kartun, makhluk aneh, dan simbol-simbol pop culture. Eddie Hara sering disebut sebagai "seniman rebel" karena menolak konvensi gaya lukisan tradisional Indonesia, memilih jalan bebas dan personal dalam berekspresi.</p>
+      <p><strong>Kenapa Seni Ini Dibuat:</strong>Karya Eddie Hara, seperti seri Monster and Friends, diciptakan untuk menggambarkan kebebasan penuh dalam dunia seni. Eddie menggunakan karakter monster, alien, dan makhluk aneh sebagai kritik atas absurditas dunia modern: politik yang kacau, kapitalisme, dan konsumerisme. Dengan gaya yang tampak 'lucu' namun dalam, ia menyampaikan pesan bahwa di balik keceriaan ada ketidakpastian, kecemasan, dan absurditas zaman sekarang. Ia ingin melawan narasi serius dalam seni rupa dengan membawa spirit kegembiraan yang liar dan anti-konvensi.</p>
+      <p><strong>Harga Tiket:</strong> Rp110.000</p>
+      <a class="btn-beli" href="pembayaran3.html">Beli Tiket</a>
+    </div>
+  </div>
+</div>
+<script>
+  const STORAGE_KEY = 'seniman1_detail';
+
+  function renderDetail() {
+    const data = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    if (data) {
+      document.getElementById('artistName').textContent = data.nama;
+      document.getElementById('artistDesc').textContent = data.deskripsi;
+      document.getElementById('artistReason').textContent = data.alasan;
+      document.getElementById('artistPrice').textContent = data.harga;
+      document.getElementById('artistImg').src = data.img;
+    }
+  }
+
+  function editDetail() {
+    const currentData = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {
+      nama: document.getElementById("artistName").textContent,
+      deskripsi: document.getElementById("artistDesc").textContent,
+      alasan: document.getElementById("artistReason").textContent,
+      harga: document.getElementById("artistPrice").textContent,
+      img: document.getElementById("artistImg").src
+    };
+
+    const nama = prompt("Edit nama seniman:", currentData.nama);
+    const deskripsi = prompt("Edit deskripsi karya:", currentData.deskripsi);
+    const alasan = prompt("Kenapa karya ini dibuat:", currentData.alasan);
+    const harga = prompt("Harga tiket:", currentData.harga);
+    const img = prompt("URL gambar baru (kosongkan kalau tidak ingin ganti):", currentData.img);
+
+    const updatedData = {
+      nama: nama !== null && nama.trim() !== "" ? nama : currentData.nama,
+      deskripsi: deskripsi !== null && deskripsi.trim() !== "" ? deskripsi : currentData.deskripsi,
+      alasan: alasan !== null && alasan.trim() !== "" ? alasan : currentData.alasan,
+      harga: harga !== null && harga.trim() !== "" ? harga : currentData.harga,
+      img: img !== null && img.trim() !== "" ? img : currentData.img
+    };
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedData));
+    renderDetail();
+  }
+
+  window.onload = renderDetail;
+</script>
+
+</body>
+</html>

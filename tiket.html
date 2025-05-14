@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Daftar Tiket Galeri</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #fceabb, #f8b500);
+      padding: 30px;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .tiket-container {
+      max-width: 700px;
+      margin: 30px auto;
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+    .tiket {
+      border-bottom: 1px solid #ccc;
+      padding: 15px 0;
+    }
+    .tiket:last-child {
+      border-bottom: none;
+    }
+    .hapus-btn {
+      background: #e74c3c;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .back-btn {
+      display: block;
+      margin: 30px auto 0;
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+    }
+    .back-btn:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+  <h1>Daftar Tiket Anda</h1>
+  <div class="tiket-container" id="daftarTiket">
+    <!-- Tiket akan dimuat di sini -->
+  </div>
+
+  <button class="back-btn" onclick="window.location.href='Galeri.html'">← Kembali ke Galeri</button>
+
+  <script>
+    const daftarTiket = document.getElementById("daftarTiket");
+    const tiketTersimpan = JSON.parse(localStorage.getItem("tiketGaleri")) || [];
+
+    if (tiketTersimpan.length === 0) {
+      daftarTiket.innerHTML = "<p style='text-align: center;'>Belum ada tiket dibeli.</p>";
+    } else {
+      tiketTersimpan.forEach((tiket, index) => {
+        const div = document.createElement("div");
+        div.className = "tiket";
+        div.innerHTML = `
+          <p><strong>${tiket.nama}</strong></p>
+          <p>Harga: Rp100.000</p>
+          <p>ID Tiket: ${tiket.id}</p>
+          <p>Waktu Pembelian: ${tiket.waktu}</p>
+          <button class="hapus-btn" onclick="hapusTiket(${index})">Hapus</button>
+        `;
+        daftarTiket.appendChild(div);
+      });
+    }
+
+    function hapusTiket(index) {
+      tiketTersimpan.splice(index, 1);
+      localStorage.setItem("tiketGaleri", JSON.stringify(tiketTersimpan));
+      location.reload();
+    }
+  </script>
+</body>
+</html>
+
+

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login Akun - Galeri Seni</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #ACB6E5, #74ebd5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .form-container {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      width: 350px;
+    }
+    .form-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    .form-container input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    .form-container button {
+      width: 100%;
+      padding: 12px;
+      background: #4A90E2;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .form-container button:hover {
+      background: #357ABD;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+   <h2>Login Akun</h2>
+    <form action="galeri.html" method="POST">
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="password" name="password" placeholder="Kata Sandi" required>
+      <button type="submit" name="submit">Masuk</button>
+      <p style="text-align:center; margin-top: 5px;">
+        <a href="reset.html">Lupa Password?</a>
+      </p>
+      
+    </form>
+    <p style="text-align:center; margin-top: 10px;">
+      Belum punya akun? <a href="index.html">Buat Akun</a>
+    </p>
+    
+  </div>
+</body>
+<script>
+  document.querySelector("form").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const email = this.email.value;
+    const password = this.password.value;
+
+    const akun = JSON.parse(localStorage.getItem("akunGaleri"));
+
+    if (akun && akun.email === email && akun.password === password) {
+      alert("Login berhasil!");
+      window.location.href = "galeri.html";
+    } else {
+      alert("Email atau password salah!");
+    }
+  });
+</script>
+
+</html>
+

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Struk Pembayaran - Budi Santoso</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #74ebd5, #ACB6E5);
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    .struk-container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    h2 {
+      color: #333;
+    }
+    p {
+      margin: 10px 0;
+      color: #555;
+    }
+    .timer {
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 20px;
+      color: red;
+    }
+    .btn-selesai {
+      margin-top: 20px;
+      background-color: #4A90E2;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-selesai:hover {
+      background-color: #357ABD;
+    }
+  </style>
+</head>
+<body>
+
+<div class="struk-container">
+  <h2>Struk Pembayaran</h2>
+  <p><strong>Seniman:</strong> Basuki Abdullah</p>
+  <p><strong>Harga Tiket:</strong> Rp100.000</p>
+  <p><strong>Metode Pembayaran:</strong> (Akan muncul dari form)</p>
+  <p><strong>Nomor Transaksi:</strong> #TRX123456789</p>
+  <div class="timer" id="timer">15:00</div>
+  <a class="btn-selesai" onclick="lanjutKeSukses()" href="sukses.html">Lanjut</a>
+</div>
+
+<script>
+  // Timer mundur 15 menit
+  let waktu = 15 * 60;
+  const timerElement = document.getElementById('timer');
+
+  function updateTimer() {
+    const menit = Math.floor(waktu / 60);
+    const detik = waktu % 60;
+    timerElement.textContent = `${menit}:${detik < 10 ? '0' : ''}${detik}`;
+    if (waktu > 0) {
+      waktu--;
+      setTimeout(updateTimer, 1000);
+    } else {
+      timerElement.textContent = "Waktu Habis!";
+      document.querySelector(".btn-bayar").disabled = true;
+    }
+  }
+
+  function lanjutKeSukses() {
+    alert("Pembayaran berhasil! Anda akan diarahkan ke halaman sukses.");
+    window.location.href = "sukses.html";
+  }
+  updateTimer();
+</script>
+
+</body>
+</html>

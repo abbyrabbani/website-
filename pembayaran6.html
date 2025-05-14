@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pembayaran Tiket - Budi Santoso</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #ACB6E5, #74ebd5);
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+    h2 {
+      color: #333;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      text-align: left;
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    .btn-bayar {
+      margin-top: 20px;
+      background-color: #4A90E2;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .btn-bayar:hover {
+      background-color: #357ABD;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Pembayaran Tiket - Raden Saleh</h2>
+  <form action="struk6.html" method="GET">
+    <label for="nama">Nama Lengkap:</label>
+    <input type="text" id="nama" name="nama" required>
+
+    <label for="metode">Metode Pembayaran:</label>
+    <select id="metode" name="metode" required>
+      <option value="Dana">Dana - Rp100.000</option>
+      <option value="Gopay">Gopay - Rp100.000</option>
+      <option value="BNI">BNI Transfer - Rp100.000</option>
+      <option value="BCA">BCA Transfer - Rp100.000</option>
+      <option value="Qris">Scan Qris - Rp100.000</option>
+    </select>
+    <!-- Tambahkan di halaman pembayaran-seniman2.html (atau halaman pembayaran lainnya) -->
+
+<h2>Detail Acara Pameran:</h2>
+<ul>
+  <li><strong>Tempat:</strong> Galeri Nasional Indonesia, Jakarta</li>
+  <li><strong>Tanggal:</strong> 20 Agustus 2025</li>
+  <li><strong>Waktu:</strong> 10.00 WIB - 17.00 WIB</li>
+</ul>
+
+
+    <button type="submit" class="btn-bayar">Bayar Sekarang</button>
+  </form>
+</div>
+
+</body>
+</html>
+
+

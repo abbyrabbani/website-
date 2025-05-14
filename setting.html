@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pengaturan Galeri</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      padding: 20px;
+      margin: 0;
+      background: linear-gradient(to right, #d9a7c7, #fffcdc);
+    }
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    select, button, input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 16px;
+      border-radius: 8px;
+    }
+    button {
+      background-color: #4A90E2;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #357ABD;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Pengaturan Tampilan Galeri</h2>
+
+    <label for="background">🎨 Pilih Tema Background Gradasi:</label>
+    <select id="background">
+      <option value="#74ebd5,#ACB6E5">Biru Lembut</option>
+      <option value="#ffecd2,#fcb69f">Peach</option>
+      <option value="#d9a7c7,#fffcdc">Pink Putih</option>
+      <option value="#c2e9fb,#a1c4fd">Langit Cerah</option>
+      <option value="#fbc2eb,#a6c1ee">Ungu Pink</option>
+      <option value="#fdfbfb,#ebedee">Putih Abu</option>
+      <option value="#a1c4fd,#c2e9fb">Langit Pagi</option>
+      <option value="#fdfcfb,#e2d1c3">Krem Vintage</option>
+      <option value="#FFDEE9,#B5FFFC">Pastel Ceria</option>
+    </select>
+
+    <label for="bgImage">🖼️ Atau Pilih Gambar Background:</label>
+    <input type="file" id="bgImage" accept="image/*">
+
+    <button onclick="simpanPengaturan()">💾 Simpan</button>
+    <button onclick="window.location.href='galeri.html'" style="margin-top:10px;">🔙 Kembali ke Galeri</button>
+  </div>
+
+  <script>
+    function simpanPengaturan() {
+      const gradasi = document.getElementById("background").value;
+      const file = document.getElementById("bgImage").files[0];
+
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          localStorage.setItem("bgGaleriImage", e.target.result);
+          localStorage.removeItem("bgGaleri"); // hapus gradasi jika pakai gambar
+          alert("Gambar background berhasil disimpan!");
+          window.location.href = "galeri.html";
+        };
+        reader.readAsDataURL(file);
+      } else {
+        localStorage.setItem("bgGaleri", gradasi);
+        localStorage.removeItem("bgGaleriImage"); // hapus gambar jika pakai gradasi
+        alert("Gradasi background berhasil disimpan!");
+        window.location.href = "galeri.html";
+      }
+    }
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Profil Akun</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #ffecd2, #fcb69f);
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 500px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    #simpan {
+      background-color: #4A90E2;
+      color: white;
+    }
+    #simpan:hover {
+      background-color: #357ABD;
+    }
+    #kembali {
+      background-color: #E94E77;
+      color: white;
+    }
+    #kembali:hover {
+      background-color: #C0392B;
+    }
+    #setting {
+      background-color: #F5A623;
+      color: white;
+    }
+    #setting:hover {
+      background-color: #d28e1b;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Profil Akun</h2>
+
+    <label for="nama">Nama</label>
+    <input type="text" id="nama" placeholder="Masukkan Nama Anda" />
+
+    <label for="email">Email</label>
+    <input type="email" id="email" placeholder="Masukkan Email Anda" />
+
+    <label for="hp">Nomor HP</label>
+    <input type="text" id="hp" placeholder="Masukkan Nomor HP" />
+
+    <button id="simpan">💾 Simpan Perubahan</button>
+    <button id="setting" onclick="window.location.href='setting.html'">⚙️ Pengaturan Galeri</button>
+    <button id="kembali" onclick="window.location.href='galeri.html'">🔙 Kembali ke Galeri</button>
+  </div>
+
+  <script>
+    const namaInput = document.getElementById("nama");
+    const emailInput = document.getElementById("email");
+    const hpInput = document.getElementById("hp");
+
+    // Tampilkan data akun dari localStorage
+    const akun = JSON.parse(localStorage.getItem("akunGaleri"));
+    if (akun) {
+      namaInput.value = akun.nama || "";
+      emailInput.value = akun.email || "";
+      hpInput.value = akun.hp || "";
+    } else {
+      alert("Akun tidak ditemukan. Silakan login.");
+      window.location.href = "login.html";
+    }
+
+    // Simpan data saat klik tombol
+    document.getElementById("simpan").addEventListener("click", () => {
+      const akunBaru = {
+        nama: namaInput.value,
+        email: emailInput.value,
+        hp: hpInput.value
+      };
+      localStorage.setItem("akunGaleri", JSON.stringify(akunBaru));
+      alert("Perubahan berhasil disimpan!");
+    });
+  </script>
+
+</body>
+</html>
+

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Galeri Seni - CRUD</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #74ebd5, #ACB6E5);
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #333;
+    }
+    form {
+      max-width: 600px;
+      margin: 60px auto 0;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    form input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    form button {
+      background: #4A90E2;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .artist-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s;
+      text-align: center;
+    }
+    .artist-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .artist-card h3 {
+      margin: 10px 0;
+      color: #333;
+    }
+    .artist-card a,
+    .artist-card button {
+      display: inline-block;
+      margin: 5px 5px 15px;
+      padding: 8px 16px;
+      background-color: #4A90E2;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .artist-card a:hover,
+    .artist-card button:hover {
+      background-color: #357ABD;
+    }
+    .artist-card:hover {
+      transform: translateY(-5px);
+    }
+    #preview-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: none;
+      margin-bottom: 10px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Galeri Karya Seni</h1>
+<div style="text-align: center; margin-bottom: 40px;">
+  <button onclick="beliTiket()" style="
+    background: #FF6F61;
+    color: white;
+    padding: 12px 24px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+    margin-right: 10px;
+  ">🎟️ Tiket</button>
+
+<button onclick="logout()" style="
+ background: #E94E77;
+ color: white;
+ padding: 12px 24px;
+ font-size: 16px;
+ border: none;
+ border-radius: 10px;
+ cursor: pointer;
+ box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+ transition: transform 0.2s;
+">🚪 Logout</button>
+
+<button onclick="lihatProfil()" style="
+background: #F5A623;
+color: white;
+padding: 12px 24px;
+font-size: 16px;
+border: none;
+border-radius: 10px;
+cursor: pointer;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+transition: transform 0.2s;
+margin-right: 10px;
+">👤 Profil</button>
+
+</div>
+
+</div>
+<!-- Karya Baru Akan Muncul di Atas -->
+<div class="gallery" id="galeri-baru"></div>
+
+<!-- Karya Lama Tetap -->
+
+<div class="gallery" id="galeri-lama">
+  <!-- (data seniman lama tidak diubah) -->
+  <div class="artist-card">
+    <img src="images.jpeg" alt="Budi santoso">
+    <h3> Monumen penghilang paksa</h3>
+    <a href="detail1.html">Lihat Detail</a>
+    <button onclick="hapusKaryaLama('lama1', this)">Hapus</button>
+  </div>
+  <div class="artist-card">
+    <img src="karya_lukisan_Jeihan.jpg" alt="Jeihan Sukmantoro">
+    <h3>Wajah-Wajah — seri lukisan potret dengan mata hitam</h3>
+    <a href="detail2.html">Lihat Detail</a>
+    <button onclick="hapusKaryaLama('lama1', this)">Hapus</button>
+  </div>
+  <div class="artist-card">
+    <img src="download.jpeg1.jpeg" alt="Eddi Hara">
+    <h3> Monster and Friends</h3>
+    <a href="detail3.html">Lihat Detail</a>
+    <button onclick="hapusKaryaLama('lama1', this)">Hapus</button>
+  </div>
+  <div class="artist-card">
+    <img src="images.jpegaffandi1.jpeg" alt="Affandi">
+    <h3> Self-Portrait</h3>
+    <a href="detail4.html">Lihat Detail</a>
+    <button onclick="hapusKaryaLama('lama1', this)">Hapus</button>
+  </div>
+  <div class="artist-card">
+    <img src="images.jpegbasuki1.jpeg" alt="Basuki Abdullah">
+    <h3> Visual Art Archive</h3>
+    <a href="detail5.html">Lihat Detail</a>
+    <button onclick="hapusKaryaLama('lama1', this)">Hapus</button>
+  </div>
+  <div class="artist-card">
+    <img src="images.jpegraden1.jpeg" alt="Raden Saleh">
+    <h3> Penangkapan Pangeran Diponegoro</h3>
+    <a href="detail6.html">Lihat Detail</a>
+    <button onclick="hapusKaryaLama('lama1', this)">Hapus</button>
+  </div>
+  <div class="artist-card">
+    <img src="images.jpenyoman1.jpeg" alt="I Nyoman Masriadi">
+    <h3> The Man from Bantul (The Final Round) </h3>
+    <a href="detail7.html">Lihat Detail</a>
+    <button onclick="hapusKaryaLama('lama1', this)">Hapus</button>
+  </div>
+  <div class="artist-card">
+    <img src="images .jpegdono1.jpeg" alt="Heri Dono">
+    <h3>Flying Angels</h3>
+    <a href="detail8.html">Lihat Detail</a>
+    <button onclick="hapusKaryaLama('lama1', this)">Hapus</button>
+  </div>
+  <div class="artist-card">
+    <img src="images.jpegEntang1.jpeg" alt="Entang Wiharso">
+    <h3>Temple of Hope: Door to Nirvana</h3>
+    <a href="detail9.html">Lihat Detail</a>
+    <button onclick="hapusKaryaLama('lama1', this)">Hapus</button>
+  </div>
+  <div class="artist-card">
+    <img src="images.jpegFX1.jpeg" alt="FX Harsono">
+    <h3>Karya Rewriting the Erased</h3>
+    <a href="detail10.html">Lihat Detail</a>
+    <button onclick="hapusKaryaLama('lama1', this)">Hapus</button>
+
+  </div>
+</div>
+
+<!-- Form Tambah Karya -->
+
+<form id="formTambah">
+  <img id="preview-img" alt="Preview Gambar">
+  <input type="text" id="judul" placeholder="Judul Karya" required>
+  <input type="text" id="gambar" placeholder="URL Gambar atau unggah di bawah" required>
+  <input type="file" id="upload" accept="image/*">
+  <input type="text" id="detail" placeholder="Link Halaman Detail (contoh: detail11.html)" required>
+  <button type="submit">Tambah Karya Baru</button>
+</form>
+
+<!-- Script untuk fitur LocalStorage dan Preview -->
+
+<script>
+  function hapusKaryaLama(id, tombol) {
+  let terhapus = JSON.parse(localStorage.getItem("karyaLamaTerhapus")) || [];
+  if (!terhapus.includes(id)) {
+    terhapus.push(id);
+    localStorage.setItem("karyaLamaTerhapus", JSON.stringify(terhapus));
+  }
+  tombol.parentElement.remove(); // hapus dari tampilan
+}
+
+// Saat halaman dibuka, cek karya lama mana yang sudah dihapus
+window.addEventListener("DOMContentLoaded", () => {
+  const karyaTerhapus = JSON.parse(localStorage.getItem("karyaLamaTerhapus")) || [];
+  karyaTerhapus.forEach(id => {
+    const card = document.querySelector(`.artist-card[data-id="${id}"]`);
+    if (card) card.remove();
+  });
+});
+
+  const bgGradasi = localStorage.getItem("bgGaleri");
+const bgImage = localStorage.getItem("bgGaleriImage");
+
+if (bgImage) {
+  document.body.style.background = `url('${bgImage}') no-repeat center center fixed`;
+  document.body.style.backgroundSize = "cover";
+} else if (bgGradasi) {
+  document.body.style.background = `linear-gradient(to right, ${bgGradasi})`;
+}
+
+  // Ganti background galeri sesuai pengaturan user
+window.addEventListener("DOMContentLoaded", () => {
+  const bg = localStorage.getItem("bgGaleri");
+  if (bg) {
+    document.body.style.background = `linear-gradient(to right, ${bg})`;
+  }
+});
+
+  function lihatProfil() {
+  window.location.href = "profil.html";
+}
+
+  function logout() {
+    alert("Anda telah logout.");
+    window.location.href = "login.html"; // arahkan ke halaman login
+  }
+
+  function beliTiket() {
+  const tiket = {
+    id: Date.now().toString(),
+    nama: "Tiket Masuk Galeri",
+    harga: "Rp50.000",
+    waktu: new Date().toLocaleString()
+  };
+
+  const tiketTersimpan = JSON.parse(localStorage.getItem("tiketGaleri")) || [];
+  tiketTersimpan.push(tiket);
+  localStorage.setItem("tiketGaleri", JSON.stringify(tiketTersimpan));
+
+  alert("Tiket berhasil dibeli!");
+  window.location.href = "tiket.html";
+}
+
+  const galeriBaru = document.getElementById("galeri-baru");
+  const form = document.getElementById("formTambah");
+  const gambarInput = document.getElementById("gambar");
+  const uploadInput = document.getElementById("upload");
+  const previewImg = document.getElementById("preview-img");
+
+  // Tampilkan karya tersimpan dari localStorage saat halaman dibuka
+  window.addEventListener("DOMContentLoaded", () => {
+    const karyaTersimpan = JSON.parse(localStorage.getItem("karyaSeni")) || [];
+    karyaTersimpan.forEach(karya => {
+      tampilkanKarya(karya);
+    });
+  });
+
+  function tampilkanKarya(karya) {
+    const card = document.createElement("div");
+    card.className = "artist-card";
+    card.innerHTML = `
+      <img src="${karya.gambar}" alt="${karya.judul}">
+      <h3>${karya.judul}</h3>
+      <a href="${karya.detail}">Lihat Detail</a>
+      <button onclick="hapusKarya('${karya.id}', this)">Hapus</button>
+    `;
+    galeriBaru.prepend(card);
+  }
+
+  function hapusKarya(id, tombol) {
+    let karyaTersimpan = JSON.parse(localStorage.getItem("karyaSeni")) || [];
+    karyaTersimpan = karyaTersimpan.filter(karya => karya.id !== id);
+    localStorage.setItem("karyaSeni", JSON.stringify(karyaTersimpan));
+    tombol.parentElement.remove();
+  }
+
+  // Preview otomatis saat URL gambar dimasukkan
+  gambarInput.addEventListener("input", () => {
+    previewImg.src = gambarInput.value;
+    previewImg.style.display = "block";
+  });
+
+  // Preview otomatis saat file di-upload
+  uploadInput.addEventListener("change", () => {
+    const file = uploadInput.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        previewImg.src = e.target.result;
+        previewImg.style.display = "block";
+        gambarInput.value = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const judul = document.getElementById("judul").value;
+    const gambar = document.getElementById("gambar").value;
+    const detail = document.getElementById("detail").value;
+    const id = Date.now().toString(); // ID unik
+
+    const karyaBaru = { id, judul, gambar, detail };
+
+    const karyaTersimpan = JSON.parse(localStorage.getItem("karyaSeni")) || [];
+    karyaTersimpan.push(karyaBaru);
+    localStorage.setItem("karyaSeni", JSON.stringify(karyaTersimpan));
+
+    tampilkanKarya(karyaBaru);
+    form.reset();
+    previewImg.style.display = "none";
+  });
+</script>
+
+</body>
+</html>
+

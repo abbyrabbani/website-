@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pembayaran Tiket - Siti Nurhaliza</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      margin: 0;
+      padding: 20px;
+    }
+    .form-container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+    }
+    input, select, button {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    button {
+      background-color: #2575fc;
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #1a4fb4;
+    }
+  </style>
+</head>
+<body>
+
+<div class="form-container">
+  <h2>Pembayaran Tiket</h2>
+  <form action="struk2.html" method="get">
+    <input type="text" placeholder="Nama Lengkap" required>
+    <input type="email" placeholder="Email" required>
+    <select required>
+      <option value="">Pilih Metode Pembayaran</option>
+      <option value="Dana">Dana  -  RP.125.0000</option>
+      <option value="Gopay">Gopay  -  RP.125.0000</option>
+      <option value="BNI">BNI  -  RP.125.0000</option>
+      <option value="BCA">BCA  -  RP.125.0000</option>
+      <option value="Qris">Qris  -  RP.125.0000</option>
+    </select>
+    <!-- Tambahkan di halaman pembayaran-seniman2.html (atau halaman pembayaran lainnya) -->
+
+<h2>Detail Acara Pameran:</h2>
+<ul>
+  <li><strong>Tempat:</strong> Galeri Nasional Indonesia, Jakarta</li>
+  <li><strong>Tanggal:</strong> 16 Agustus 2025</li>
+  <li><strong>Waktu:</strong> 09.00 WIB - 17.00 WIB</li>
+</ul>
+
+    <button type="submit">Bayar Sekarang</button>
+  </form>
+</div>
+
+</body>
+</html>
